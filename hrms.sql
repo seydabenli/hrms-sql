@@ -1,10 +1,10 @@
--- public.company definition
+-- hrms.company definition
 
 -- Drop table
 
--- DROP TABLE public.company;
+-- DROP TABLE hrms.company;
 
-CREATE TABLE public.company (
+CREATE TABLE hrms.company (
 	id int8 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	company_name varchar NOT NULL,
 	web_site varchar NOT NULL,
@@ -13,13 +13,13 @@ CREATE TABLE public.company (
 );
 
 
--- public.employee definition
+-- hrms.employee definition
 
 -- Drop table
 
--- DROP TABLE public.employee;
+-- DROP TABLE hrms.employee;
 
-CREATE TABLE public.employee (
+CREATE TABLE hrms.employee (
 	id int8 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	first_name varchar NOT NULL,
 	last_name varchar NOT NULL,
@@ -29,27 +29,27 @@ CREATE TABLE public.employee (
 );
 
 
--- public.job_advert definition
+-- hrms.job_advert definition
 
 -- Drop table
 
--- DROP TABLE public.job_advert;
+-- DROP TABLE hrms.job_advert;
 
-CREATE TABLE public.job_advert (
+CREATE TABLE hrms.job_advert (
 	id int8 NOT NULL,
 	title varchar NULL,
 	CONSTRAINT job_advert_pk PRIMARY KEY (id)
 );
-CREATE INDEX job_advert_title_idx ON public.job_advert USING btree (title);
+CREATE INDEX job_advert_title_idx ON hrms.job_advert USING btree (title);
 
 
--- public."system_user" definition
+-- hrms."system_user" definition
 
 -- Drop table
 
--- DROP TABLE public."system_user";
+-- DROP TABLE hrms."system_user";
 
-CREATE TABLE public."system_user" (
+CREATE TABLE hrms."system_user" (
 	id int8 NOT NULL,
 	first_name varchar NOT NULL,
 	last_name varchar NOT NULL,
@@ -57,13 +57,13 @@ CREATE TABLE public."system_user" (
 );
 
 
--- public.job_advert_company definition
+-- hrms.job_advert_company definition
 
 -- Drop table
 
--- DROP TABLE public.job_advert_company;
+-- DROP TABLE hrms.job_advert_company;
 
-CREATE TABLE public.job_advert_company (
+CREATE TABLE hrms.job_advert_company (
 	id int8 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	job_advert_id int8 NOT NULL,
 	company_id int8 NOT NULL,
@@ -73,13 +73,13 @@ CREATE TABLE public.job_advert_company (
 );
 
 
--- public."user" definition
+-- hrms."user" definition
 
 -- Drop table
 
--- DROP TABLE public."user";
+-- DROP TABLE hrms."user";
 
-CREATE TABLE public."user" (
+CREATE TABLE hrms."user" (
 	id int8 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	email varchar NULL,
 	"password" varchar NULL,
@@ -88,4 +88,4 @@ CREATE TABLE public."user" (
 	CONSTRAINT user_fk_1 FOREIGN KEY (id) REFERENCES employee(id),
 	CONSTRAINT user_fk_2 FOREIGN KEY (id) REFERENCES system_user(id)
 );
-CREATE INDEX user_email_idx ON public."user" USING btree (email);
+CREATE INDEX user_email_idx ON hrms."user" USING btree (email);
